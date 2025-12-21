@@ -1,0 +1,590 @@
+{
+  "name": "QUANTSTATS_NEXTJS",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a cute and helpful assistant. Be nice and cutesy - use some emojis - but don't call the user Cutie etc. Guide the user on how to use the various reports and also help with Yahoo Finance Symbols, as many users might not know the correct ones.\n\n---\n### 🚨 URL Formatting Rule (Must Follow)\n\nWhen the air tool returns a report URL, do not output the raw URL directly. Instead, format the response using Markdown syntax to make it a clickable link. Use a friendly label for the link based on the report type. For example:\n\n[View SPR HTML Report](https://example.com/report-one)\n\n[Download Processed Price Data](https://example.com/report-2)\n\n[Download Cumulative Returns CSV ](https://example.com/report-3)\n\nand so on \n\nReplace the actual URL dynamically as returned by the tool. Just make sure the output to the user is a Markdown-formatted link like [View Report X](https://url).\n\n\n----\n\n### 🚨 Whenever you return one or more report links or item list to the user, always follow this format:\n\nUse emoji-numbered bullets (like 1️⃣, 2️⃣, 3️⃣)\n\nFollow that with a friendly, bold report title\n\nThen provide the Markdown link labeled View Here\n\nExample Output Format:\n1️⃣ Security Performance Report: View Here\n2️⃣ Technical Analysis: View Here\n3️⃣ Incident Summary: View Here\n\n✅ Be consistent—never show raw URLs or use plain text lists.\n\n---\n\n### 🧰 Responding to “What can you do?”\n\nWhen the user asks “what all can you do” — they are referring to the tools at your disposal.  \nDon’t share general capabilities — respond by listing tools in this order:\n\n1. QuantStat Report  \n2. Technical Analysis Report  \n3. Security Performance Report (SPR)  \n4. Yahoo Finance Data Pull  \n\nKeep it concise.\n\n---\n\n### 🛠️ Tool Usage Instructions\n\nAll tools take Yahoo Finance Symbols.  \nIf the user hasn't specified the symbol, try to identify it from your knowledge and confirm it with the user.\n\n---\n\n### 📊 QuantStats Tool\n\n- Default to the **past 5-year period**, but first confirm with the user.  \n- Always share the actual date range and default risk-free rate before running.\n- Once report is generated, **wrap the URL in `<url>`** and share.\n- If report fails, share this fallback link:  \n  <url>https://rex.tigzig.com/portfolio-analysis-suite</url>\n- If users says e.g. Nifty Fifty (^NSEI) vs S&P 500 (^GSPC)\n\n---\n\n### 📈 Technical Analysis Tool\n\n- If no date is specified, suggest a default date range and wait for confirmation:\n  - Daily: November 1, 2024 – April 24, 2025 (approx. past 6 months)  \n  - Weekly: April 1, 2023 – April 24, 2025 (approx. past 2 years)  \n- Once report is generated, **wrap the URL in `<url>`** and share.\n- If report fails, ask the user to got to the Portfolio Suite  \n  <url>https://rex.tigzig.com/portfolio-analysis-suite</url>\n\n---\n\n### 📉 Security Performance Report (SPR)\n\n- Can take more than two Yahoo Finance Symbols.\n- If no dates are provided, suggest a **past 10-year** period and confirm.\n- Once report is generated, **wrap the URL in `<url>`** and share.\n\n\n---\n\n### 🤖 Agent Instruction: Lighten the Load with Every Response\n\nWith every response you generate, **always include a Short Joke or Pun**, and then **add one more item** chosen at random from the following five categories. This ensures each reply is informative and a little fun—while covering a wide variety of helpful or interesting content.\n\n---\n\n#### ✅ Always Include:\n\n1. **Short Joke or Pun**  \n   - Related to: AI Agents, Financial Analysts, Data Science, or Technology.  \n   - *Example:* Why don’t AI agents make good comedians? They always *predict* the punchline.\n\n---\n\n#### 🎯 Then Pick ONE (at random) from the List Below:\n\n2. **Quick Financial KPI Tip**  \n   - Focus on metrics like CAGR, Sharpe Ratio, Sortino Ratio, Volatility, Max Drawdown, etc.  \n   - *Example:* The Sharpe Ratio helps you understand return per unit of total risk—like getting paid for how much stress your portfolio takes!\n\n3. **Fun Fact or History Byte**  \n   - Related to finance, markets, or data science.  \n   - *Example:* Did you know? CAGR was originally used by engineers to model machinery degradation before finance borrowed it.\n\n4. **Simple Analogy or Metaphor**  \n   - Make a core concept intuitive.  \n   - *Example:* Think of volatility like the weather—some days it’s calm, others it’s a storm. Your portfolio needs an umbrella.\n\n5. **Pro Tip or Best Practice**  \n   - Something actionable and helpful in financial analysis.  \n   - *Example:* Don’t rely on CAGR alone—use it with volatility or Sharpe to get the full performance picture.\n\n6. **Quote of the Day (Finance or Tech)**  \n   - *Example:* \"Risk comes from not knowing what you're doing.\" – Warren Buffett\n\n---\n\n#### ✅ Bonus: Add Emojis\nSprinkle relevant emojis to make the tone lighter. No mood analysis needed. Use emojis like: 📈 📉 🤖 💡 🧠 💰 🔍 😄 🚀 etc\n\nKeep it smart, useful, and just a bit fun. It’s not a circus—but it shouldn’t feel like a tax audit either. 😉\n\n\n---\n\n### 💬 FAQ and Various Scenaiors\n\nIf the user asks about how you’re built, direct them to:\n- Code/docs: Click on the Docs link on the app will take them to source codes with detailed README's and build guides \n- Creator’s LinkedIn: <url>https://www.linkedin.com/in/amarharolikar</url>  \n- Contact: amar@harolikar.com\n\n\nIf the users just says Analyze so and so - then offer to run all 3 reports and pull any Yahoo Finance Info that the user might need.\n\nIf the users asks about getting the Yahoo Finance Info in CSV format - and since you can only share on the screen - then direct the user to the ask the user to got to the Portfolio Suite  \n  <url>https://rex.tigzig.com/portfolio-analysis-suite</url>\n\n\n---\nFor any other bugs, issues or questions which you are not able to answer you can ask the user to contact me (your creator) Amar Harolikar at amar@harolikar.com"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -500,
+        -420
+      ],
+      "id": "973ec610-f8f7-477f-8611-4fc833be584c",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -700,
+        -180
+      ],
+      "id": "18f97837-412f-4044-84ec-304d5e910bfc",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "N4FqXcavflFvmomg",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chatInput }}",
+        "options": {
+          "systemMessage": "You are a helpful assistant\n\nWhen sharing URLs, please format them like this:\n<url>http://example.com</url>\n\nFor example:\n<url>https://rex.tigzig.com/web-scraper</url>\n<url>http://mdtopdf.hosting.tigzig.com/static/pdfs/report.pdf</url>"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -480,
+        100
+      ],
+      "id": "d900b3a1-b147-40d6-be18-bc451fec1ef3",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -660,
+        380
+      ],
+      "id": "1095ce59-6515-487c-ace4-052a783da8cd",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "N4FqXcavflFvmomg",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sseEndpoint": "https://yfin.hosting.tigzig.com/mcp",
+        "include": "selected",
+        "includeTools": [
+          "get_detailed_info",
+          "get_market_data",
+          "get_all_prices",
+          "get_income_statement_excel",
+          "get_balance_sheet_excel",
+          "get_cash_flow_excel",
+          "get_quarterly_income_statement_excel"
+        ]
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        380
+      ],
+      "id": "0f034da8-899d-4dd9-9711-b973c5d7eac0",
+      "name": "MCP YFIN1"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "52d01997-ad92-4ff0-bf40-54e056690423",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -940,
+        100
+      ],
+      "id": "13414abf-b845-4bcc-9c8c-7d731d4bd16b",
+      "name": "Webhook2",
+      "webhookId": "52d01997-ad92-4ff0-bf40-54e056690423"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ae029b6d-bc93-4055-a388-e77b918cc4e5",
+              "name": "text",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -120,
+        100
+      ],
+      "id": "e61a20aa-ef54-4c2b-ba11-f992fc443ab7",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        60,
+        100
+      ],
+      "id": "f6434363-f8f5-48fa-99eb-b2ec0afe48c8",
+      "name": "Respond to REX1"
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -960,
+        -420
+      ],
+      "id": "d1bec82a-3909-4790-baba-cc0708a31f01",
+      "name": "When chat message received",
+      "webhookId": "b3ecdaec-932d-4a52-90e6-69d86ec65d3c"
+    },
+    {
+      "parameters": {
+        "content": "Next JS Technical Analyst\nUsed in Live Demo",
+        "height": 80,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        -540
+      ],
+      "id": "fc436236-411a-4e7c-9aff-65a85d79c5f0",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "REX Flowise Setup \nunder testing",
+        "height": 100,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        -40
+      ],
+      "id": "1fdfc08c-d77b-42b4-89d1-c12bc91ceb9e",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Webhook2').item.json.body.overrideConfig.sessionId }}",
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -520,
+        380
+      ],
+      "id": "3d5fe863-5bf7-4e91-9a9f-ae541e091685",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3dcf5123-fd7f-40ba-8dba-b542cdb81589",
+              "name": "=todaysDate",
+              "value": "={{ new Date().toISOString().split('T')[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "97c6f80d-bc6d-492e-9450-8aaf326e107c",
+              "name": "chatInput",
+              "value": "={{ $json.body.question }}",
+              "type": "string"
+            },
+            {
+              "id": "72b1ce80-d1c5-45a0-8614-c44b828ab421",
+              "name": "sessionId",
+              "value": "={{ \"[System Note: Today is \" + new Date().toISOString().split('T')[0] + \". Please keep this in mind when interpreting references to 'today' or 'last 5 days'.]\\n\\nUser: \" + $json.chatInput }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -720,
+        100
+      ],
+      "id": "b4c9a8af-29a7-4989-a13b-a182232461a6",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -560,
+        -180
+      ],
+      "id": "1cb2b234-13f3-40b8-a905-f57428861f7a",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3dcf5123-fd7f-40ba-8dba-b542cdb81589",
+              "name": "=todaysDate",
+              "value": "={{ new Date().toISOString().split('T')[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "97c6f80d-bc6d-492e-9450-8aaf326e107c",
+              "name": "chatInput",
+              "value": "={{ \"[System Note: Today is \" + new Date().toISOString().split('T')[0] + \". Please keep this in mind when interpreting references to 'today' or 'last 5 days'.]\\n\\nUser: \" + $json.chatInput }}\n",
+              "type": "string"
+            },
+            {
+              "id": "72b1ce80-d1c5-45a0-8614-c44b828ab421",
+              "name": "sessionId",
+              "value": "={{ $json.sessionId }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -720,
+        -420
+      ],
+      "id": "973841f0-23fe-4bf2-8058-c5c6a7d240ad",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "sseEndpoint": "https://ta.hosting.tigzig.com/mcp",
+        "include": "selected",
+        "includeTools": [
+          "create_technical_analysis"
+        ]
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        380
+      ],
+      "id": "f1d3ae6e-b6fa-4df2-978e-5ac07ede2e8b",
+      "name": "MCP_TECH_AN"
+    },
+    {
+      "parameters": {
+        "sseEndpoint": "https://ta.hosting.tigzig.com/mcp",
+        "include": "selected",
+        "includeTools": [
+          "create_technical_analysis"
+        ]
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        -180
+      ],
+      "id": "a3c208d7-bc27-4bd7-b61d-6b65f93d0b63",
+      "name": "MCP_TECH_AN1"
+    },
+    {
+      "parameters": {
+        "sseEndpoint": "https://yfin.hosting.tigzig.com/mcp",
+        "include": "selected",
+        "includeTools": [
+          "get_detailed_info",
+          "get_market_data",
+          "get_all_prices",
+          "get_income_statement_excel",
+          "get_balance_sheet_excel",
+          "get_cash_flow_excel",
+          "get_quarterly_income_statement_excel"
+        ]
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        -180
+      ],
+      "id": "f8297173-6763-478e-8ad9-ce7da550fa7f",
+      "name": "MCP YFIN"
+    },
+    {
+      "parameters": {
+        "sseEndpoint": "https://quantstats.hosting.tigzig.com/mcp",
+        "include": "selected"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -180
+      ],
+      "id": "90e2bd91-66e0-4d5d-bfa2-aebc0a34eaed",
+      "name": "MCP_QUANTSTATS"
+    },
+    {
+      "parameters": {
+        "sseEndpoint": "https://ffn.hosting.tigzig.com/mcp",
+        "include": "selected",
+        "includeTools": [
+          "analyze_portfolio"
+        ]
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1,
+      "position": [
+        180,
+        -200
+      ],
+      "id": "a14469d2-f061-4565-90ed-b6a39e72cd75",
+      "name": "MCP_FFN"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP YFIN1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Respond to REX1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP_TECH_AN": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP_TECH_AN1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP YFIN": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP_QUANTSTATS": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP_FFN": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1ba378b0-2034-4d75-b7e1-db7d22e32239",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9c2f7f75f60bc212f271bad290e53964de74dfd31c0053a006339bfd1b487799"
+  },
+  "id": "lxJvq24ylXd6Ilmf",
+  "tags": []
+}
