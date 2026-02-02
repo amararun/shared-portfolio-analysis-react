@@ -132,3 +132,8 @@ This interface is designed to be a secure, efficient bridge between users and ba
 
 
 Text
+## Author
+
+Built by [Amar Harolikar](https://www.linkedin.com/in/amarharolikar/)
+
+Explore 30+ open source AI tools for analytics, databases & automation at [tigzig.com](https://tigzig.com)
